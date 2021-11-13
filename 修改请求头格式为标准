@@ -1,0 +1,40 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Feb 14 15:54:35 2020
+
+@author: weixinedu
+"""
+
+import json
+ 
+# 使用三引号将浏览器复制出来的requests headers参数赋值给一个变量
+headers = """
+Host: wabi-east-asia-b-primary-redirect.analysis.windows.net
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0
+Accept: application/json, text/plain, */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate, br
+ActivityId: 8e3e80c4-c2f3-4ae8-a14f-cce3dff2b8fe
+RequestId: 82204c4b-b016-b84f-6572-e6fd723db87c
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Imwzc1EtNTBjQ0g0eEJWWkxIVEd3blNSNzY4MCIsImtpZCI6Imwzc1EtNTBjQ0g0eEJWWkxIVEd3blNSNzY4MCJ9.eyJhdWQiOiJodHRwczovL2FuYWx5c2lzLndpbmRvd3MubmV0L3Bvd2VyYmkvYXBpIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvNzA1YTg1YWQtMWJlNi00OTNhLWE1NGMtNjBiNGUxNWU1MzBlLyIsImlhdCI6MTYzNjc4MzYxNiwibmJmIjoxNjM2NzgzNjE2LCJleHAiOjE2MzY3ODgyMzUsImFjY3QiOjAsImFjciI6IjEiLCJhaW8iOiJBVlFBcS84VEFBQUF4ZzZObzJxYUF3SGFGYnhqY0JONmtyRzBlQ2xmd3N4dDA1MHJOR1JpQ05iM0RxVmdWaWlOelVCKzlIalBTT2tXUmRIVkdiaTZuV3dvdXI2ZENha2dUZ3BDQWpReG5kWE1vV2l3Z2ZlVlNYbz0iLCJhbXIiOlsicHdkIiwibWZhIl0sImFwcGlkIjoiODcxYzAxMGYtNWU2MS00ZmIxLTgzYWMtOTg2MTBhN2U5MTEwIiwiYXBwaWRhY3IiOiIyIiwiZmFtaWx5X25hbWUiOiJ4dWVxaWFuIiwiZ2l2ZW5fbmFtZSI6ImNoZW4iLCJpcGFkZHIiOiIxMjIuNC42Ny4yMjciLCJuYW1lIjoieHVlcWlhbiBjaGVuIiwib2lkIjoiYjUxMTRmMjUtMjE2OS00MTY2LThlOWItNGU2MTBiYjk3MmRjIiwicHVpZCI6IjEwMDMyMDAxOTQyMUVDMEMiLCJyaCI6IjAuQVhFQXJZVmFjT1liT2ttbFRHQzA0VjVURGc4QkhJZGhYckZQZzZ5WVlRcC1rUkNIQUNNLiIsInNjcCI6InVzZXJfaW1wZXJzb25hdGlvbiIsInN1YiI6IlhzX0VMQ3AwclI5dHlDeXRmOUN5M2dWX1I0Y3BwRVZEM3RQRUdVSXVlREUiLCJ0aWQiOiI3MDVhODVhZC0xYmU2LTQ5M2EtYTU0Yy02MGI0ZTE1ZTUzMGUiLCJ1bmlxdWVfbmFtZSI6ImNoYWlybWFuQHdlaXhpbmVkdS5vbm1pY3Jvc29mdC5jb20iLCJ1cG4iOiJjaGFpcm1hbkB3ZWl4aW5lZHUub25taWNyb3NvZnQuY29tIiwidXRpIjoiRF9DOURORVMtRUdVNTFKQkpCYTlBQSIsInZlciI6IjEuMCIsIndpZHMiOlsiNjJlOTAzOTQtNjlmNS00MjM3LTkxOTAtMDEyMTc3MTQ1ZTEwIiwiYjc5ZmJmNGQtM2VmOS00Njg5LTgxNDMtNzZiMTk0ZTg1NTA5Il19.GaKAE16t6nTm7mWCZ4u9tE0vFsRtGyxVP23FlRTfE0Fv_oOhBwfMmZmQhDGQycmiIdVhPQiiV572VMEDbXprFMqZoHnbkjQnp8aUOrtY97XWgGZdYfn_502lBwW2uRbiAlWR3qPgIGz1hrJt7W7r6rxQB2_B5roKdYXEmYPUZNgn4qyB9zmdWpfqrW_rNKTBvspnY2VV_vxVojuS2OvtvEuJnT3Wh6dPcDImTkptj9RxTUzgyclbUl1_5uBNMiOtvdWyIZh46ttuXSyRQjxiyI2o7x-ni3w0W4gPCWzEpPgE9GDdk3LOFZqUJJQi-YcwK4quUipJH8h25TkaxPOlxQ
+Content-Type: application/json;charset=UTF-8
+X-PowerBI-HostEnv: Power BI Web
+Origin: https://app.powerbi.com
+Connection: keep-alive
+Referer: https://app.powerbi.com/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: cross-site
+Content-Length: 0
+TE: trailers
+"""
+ 
+# 去除参数头尾的空格并按换行符分割
+headers = headers.strip().split('\n')
+ 
+# 使用字典生成式将参数切片重组，并去掉空格，处理带协议头中的://
+headers = {x.split(':')[0].strip(): (''.join(x.split(':')[1:])).strip().replace('//', "://") for x in headers}
+ 
+# 使用json模块将字典转化成json格式打印出来
+print(json.dumps(headers,indent=1))
+
